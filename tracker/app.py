@@ -1,6 +1,6 @@
 
 from flask import Flask, render_template, request, redirect, session 
-from flask_mysqldb import MySQL
+from flask_sqlalchemy import SQLAlchemy
 import MySQLdb.cursors
 import re
 
@@ -15,13 +15,13 @@ app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = ''
 app.config['MYSQL_DB'] = 'financedb'
 
-mysql = MySQL(app)
+mysql = SQLAlchemy(app)
 
 
 #HOME--PAGE
 @app.route("/home")
 def home():
-    return render_template("homepage.html")
+    return render_template("home.html")
 
 @app.route("/")
 def add():
@@ -35,7 +35,6 @@ def add():
 @app.route("/signup")
 def signup():
     return render_template("signup.html")
-
 
 
 @app.route('/register', methods =['GET', 'POST'])
@@ -61,7 +60,7 @@ def register():
             cursor.execute('INSERT INTO register VALUES (NULL, % s, % s, % s)', (username, email,password))
             mysql.connection.commit()
             msg = 'You have successfully registered !'
-            return render_template('signup.html', msg = msg)
+            return render_template('home.html', msg = msg)
         
         
  
