@@ -1,20 +1,7 @@
-const inputs = document.querySelectorAll(".input");
-
-
-function addcl(){
-	let parent = this.parentNode.parentNode;
-	parent.classList.add("focus");
+function openForm() {
+    document.getElementById("myForm").style.display = "block";
 }
 
-function remcl(){
-	let parent = this.parentNode.parentNode;
-	if(this.value == ""){
-		parent.classList.remove("focus");
-	}
+function closeForm() {
+    document.getElementById("myForm").style.display = "none";
 }
-
-
-inputs.forEach(input => {
-	input.addEventListener("focus", addcl);
-	input.addEventListener("blur", remcl);
-});
